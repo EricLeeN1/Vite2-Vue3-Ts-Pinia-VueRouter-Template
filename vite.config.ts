@@ -6,8 +6,9 @@ import { resolve } from "path";
 import viteCompression from "vite-plugin-compression";
 import AutoImport from "unplugin-auto-import/vite";
 import viteMockServe from "vite-plugin-mock";
-import proxy from './config/vite/proxy';
-import visualizer from 'rollup-plugin-visualizer';
+import proxy from "./config/vite/proxy";
+import visualizer from "rollup-plugin-visualizer";
+import { VITE_PORT } from "./config/constant";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -81,16 +82,16 @@ export default defineConfig({
     //   // 下面这段代码会被注入 main.ts
     //   injectCode: `
     //       import { setupProdMockServer } from '../mock/_createProductionServer';
-    
+
     //       setupProdMockServer();
     //       `,
     // }),
     visualizer({
-      filename: './node_modules/.cache/visualizer/stats.html',
+      filename: "./node_modules/.cache/visualizer/stats.html",
       open: true,
       gzipSize: true,
       brotliSize: true,
-    })
+    }),
   ],
   resolve: {
     alias: {
@@ -101,10 +102,10 @@ export default defineConfig({
   server: {
     hmr: { overlay: false }, // 禁用或配置 HMR 连接 设置 server.hmr.overlay 为 false 可以禁用服务器错误遮罩层
     // 服务配置
-    // port: VITE_PORT, // 类型： number 指定服务器端口;
+    port: VITE_PORT, // 类型： number 指定服务器端口;
     open: false, // 类型： boolean | string在服务器启动时自动在浏览器中打开应用程序；
     cors: false, // 类型： boolean | CorsOptions 为开发服务器配置 CORS。默认启用并允许任何源
-    host: '0.0.0.0', // 支持从IP启动访问
+    host: "0.0.0.0", // 支持从IP启动访问
     proxy,
 
     // 设置代理，根据我们项目实际情况配置
