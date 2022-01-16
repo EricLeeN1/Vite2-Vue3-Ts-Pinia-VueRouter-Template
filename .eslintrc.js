@@ -1,18 +1,18 @@
 module.exports = {
+  root: true,
   env: {
     browser: true,
-    es2021: true,
     node: true,
+    es2021: true,
   },
   parser: "vue-eslint-parser",
   extends: [
-    "airbnb-base",
+    // "airbnb-base",
     "eslint:recommended",
     "plugin:vue/vue3-recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier",
-    // eslint-config-prettier 的缩写
     "plugin:prettier/recommended",
+    "prettier",
     "plugin:jest/recommended",
   ],
   parserOptions: {
@@ -28,5 +28,12 @@ module.exports = {
   rules: {
     "@typescript-eslint/no-explicit-any": "off",
     "no-useless-escape": "off",
+    "vue/multi-word-component-names": "off",
+  },
+  globals: {
+    defineProps: "readonly",
+    defineEmits: "readonly",
+    defineExpose: "readonly",
+    withDefaults: "readonly",
   },
 };
